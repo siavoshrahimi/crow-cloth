@@ -5,16 +5,17 @@ import {createStructuredSelector} from "reselect";
 import {selectDirectorySection} from "../../redux/directory/directorySelector";
 
 import MenuItem from "../menuItem/menuItem";
-import './directory.scss';
+
+import {DirectoryContainer} from "./directory.styles";
 
 const Directory = ({sections}) =>{
 
         return(
-            <div className="directory-menu">
+            <DirectoryContainer>
                 {sections.map(({id,...otherSectionProps}) =>(
                     <MenuItem key={id} {...otherSectionProps}/>
                  ))}
-            </div>
+            </DirectoryContainer>
         )
 }
 

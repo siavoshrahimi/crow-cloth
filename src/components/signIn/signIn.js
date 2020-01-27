@@ -1,9 +1,11 @@
 import React from "react";
 
-import './signIn.scss';
+import {auth,signInWithGoogle} from "../../firebase/firebase.utils";
+
 import FormInput from "../formInput/formInput";
 import Button from "../button/button";
-import {auth,signInWithGoogle} from "../../firebase/firebase.utils";
+
+import {SignInContainer,ButtonContainer,SignInTitle} from "./signIn.styles";
 
 class SignIn extends React.Component{
     state={
@@ -29,8 +31,8 @@ class SignIn extends React.Component{
     }
     render() {
         return(
-            <div className='sign-in'>
-                <h2>I have already have an account</h2>
+            <SignInContainer>
+                <SignInTitle>I have already have an account</SignInTitle>
                 <span>Sign in with your email and password</span>
                 <form onSubmit={this.submitHandler}>
                     <FormInput type="email"
@@ -49,12 +51,12 @@ class SignIn extends React.Component{
                            label='password'
                     />
 
-                    <div className="buttons">
+                    <ButtonContainer>
                         <Button type="submit" >Sign In</Button>
                         <Button onClick={signInWithGoogle} isGoogleSignIn>{''}Sign In with Google{''}</Button>
-                    </div>
+                    </ButtonContainer>
                 </form>
-            </div>
+            </SignInContainer>
         )
     }
 }
