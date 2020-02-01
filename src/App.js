@@ -1,18 +1,22 @@
 import React from 'react';
 import {Route, Switch,Redirect} from "react-router-dom";
-import {auth,creatUserProfileDocument} from "./firebase/firebase.utils";
 import {connect} from 'react-redux';
+
 import {createStructuredSelector} from 'reselect';
-
-
 import {selectCurrentUser} from './redux/user/userSelector';
+
+import {auth,creatUserProfileDocument} from "./firebase/firebase.utils";
+
 import {setCurrentUser} from "./redux/user/userAction";
+
 import './App.css';
+
 import HomePage from "./pages/HomePage/HomePage";
 import Checkout from "./pages/chekout/checkout";
 import ShopPage from './pages/shop/shop';
 import Header from "./components/header/header";
 import SignInAndUp from "./pages/signInAndUp/signInAndUp";
+
 class App extends React.Component{
 
     unSubscribeFromAuth = null;
@@ -27,9 +31,8 @@ class App extends React.Component{
                             ...snapshot.data()
                     })
                 })
-            }else {
-                setCurrentUser(userAuth)
             }
+                setCurrentUser(userAuth);
         })
     }
     componentWillUnmount() {
