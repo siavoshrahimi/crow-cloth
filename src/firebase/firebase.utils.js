@@ -72,7 +72,16 @@ export const convertCollectionsSnapshotToMap = collections =>{
     },{})
 }
 
-
+//mimicking onAuthStateChange functionality of firebase for checking persistence of user in promise way not observer for
+// saga to yield at it
+export const getCurrentUser = () =>{
+    return new Promise((resolve, reject) => {
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+            unsubscribe();
+            resolve(userAuth);
+        },reject)
+    });
+}
 
 
 export const googleProvider = new firebase.auth.GoogleAuthProvider();

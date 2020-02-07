@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import {selectCurrentUser} from './redux/user/userSelector';
 
+import {checkUserSession} from "./redux/user/userAction";
 
 import './App.css';
 
@@ -16,24 +17,11 @@ import SignInAndUp from "./pages/signInAndUp/signInAndUp";
 
 class App extends React.Component{
 
-    unSubscribeFromAuth = null;
     componentDidMount() {
-       /* this.unSubscribeFromAuth = auth.onAuthStateChanged(async userAuth =>{
-            if(userAuth){
-                const userRef =  await creatUserProfileDocument(userAuth);
-                userRef.onSnapshot(snapshot => {
-                    setCurrentUser({
-                            id:snapshot.id,
-                            ...snapshot.data()
-                    })
-                })
-            }
-                setCurrentUser(userAuth);
-        })*/
+        const {checkUserSession} = this.props;
+        checkUserSession();
     }
-    componentWillUnmount() {
-        this.unSubscribeFromAuth();
-    }
+
 
     render() {
         return (
@@ -53,5 +41,9 @@ const mapStateToProps = createStructuredSelector ({
     currentUser: selectCurrentUser,
 })
 
+const mapDispatchToProps = dispatch => ({
+    checkUserSession: () => dispatch(checkUserSession())
+})
 
-export default connect(mapStateToProps)(App);
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);
