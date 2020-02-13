@@ -23,6 +23,7 @@ const App = ({checkUserSession,currentUser}) =>{
 
     return (
         <div >
+            hello
             <Header/>
             <Switch>
                 <Route exact path='/' component={HomePage}/>
