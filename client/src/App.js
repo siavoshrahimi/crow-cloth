@@ -7,11 +7,12 @@ import {selectCurrentUser} from './redux/user/userSelector';
 
 import {checkUserSession} from "./redux/user/userAction";
 
-import './App.css';
 
 import Header from "./components/header/header";
 import Spinner from "./components/spinner/Spinner";
 import ErrorBoundary from "./components/error-boundary/ErrorBoundary";
+
+import {GlobalStyle} from "./GlobalStyle.style";
 
 const HomePage = lazy(() =>import('./pages/HomePage/HomePage'));
 const ShopPage = lazy(() =>import('./pages/shop/shop'));
@@ -28,6 +29,7 @@ const App = ({checkUserSession,currentUser}) =>{
 
     return (
         <div >
+            <GlobalStyle/>
             <Header/>
             <Switch>
                 <ErrorBoundary>
